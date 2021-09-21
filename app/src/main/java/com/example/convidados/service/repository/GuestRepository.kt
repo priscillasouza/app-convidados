@@ -2,10 +2,8 @@ package com.example.convidados.service.repository
 
 import android.content.ContentValues
 import android.content.Context
-import android.text.Selection
 import com.example.convidados.service.constants.DataBaseConstants
 import com.example.convidados.service.model.GuestModel
-import java.lang.Exception
 
 class GuestRepository private constructor(context: Context) {
 
@@ -174,7 +172,7 @@ class GuestRepository private constructor(context: Context) {
                 }
             }
 
-            //cursor?.close()
+            cursor?.close()
             list
         } catch (e: Exception) {
             list
