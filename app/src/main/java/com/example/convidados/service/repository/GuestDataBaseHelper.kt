@@ -16,7 +16,7 @@ class GuestDataBaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_
 
     companion object {
         private const val DATABASE_VERSION = 1
-        private const val DATABASE_NAME = "Convidados.bd"
+        private const val DATABASE_NAME = "convidados.db"
 
         private const val CREATE_TABLE_GUEST =
             ("create table" + DataBaseConstants.GUEST.TABLE_NAME + " ("

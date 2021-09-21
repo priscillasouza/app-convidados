@@ -174,7 +174,7 @@ class GuestRepository private constructor(context: Context) {
                 }
             }
 
-            cursor?.close()
+            //cursor?.close()
             list
         } catch (e: Exception) {
             list
