@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,19 +15,18 @@ import com.example.convidados.databinding.FragmentAllBinding
 import com.example.convidados.service.constants.GuestConstants
 import com.example.convidados.view.adapter.GuestAdapter
 import com.example.convidados.view.listener.GuestListener
-import com.example.convidados.viewmodel.AllGuestsViewModel
-import kotlinx.android.synthetic.main.fragment_all.*
+import com.example.convidados.viewmodel.GuestsViewModel
 
 class AllGuestsFragment : Fragment() {
 
-    private lateinit var mViewModel: AllGuestsViewModel
+    private lateinit var mViewModel: GuestsViewModel
     private val mAdapter: GuestAdapter = GuestAdapter()
     private var _binding: FragmentAllBinding? = null
 
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mViewModel = ViewModelProvider(this).get(AllGuestsViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(GuestsViewModel::class.java)
 
         _binding = FragmentAllBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -55,7 +53,7 @@ class AllGuestsFragment : Fragment() {
 
             override fun onDelete(id: Int) {
                 mViewModel.delete(id)
-                mViewModel.load()
+                mViewModel.load(GuestConstants.FILTER.EMPTY)
             }
         }
 
@@ -68,7 +66,7 @@ class AllGuestsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        mViewModel.load()
+        mViewModel.load(GuestConstants.FILTER.EMPTY)
     }
 
     private fun observe() {
