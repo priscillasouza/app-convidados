@@ -2,12 +2,15 @@ package com.example.convidados.service.repository
 
 import android.content.ContentValues
 import android.content.Context
+import android.util.Log
 import com.example.convidados.service.constants.DataBaseConstants
 import com.example.convidados.service.model.GuestModel
 
 class GuestRepository private constructor(context: Context) {
 
-    private var mGuestDataBaseHelper: GuestDataBaseHelper = GuestDataBaseHelper(context)
+    private val TAG = this.javaClass.simpleName
+
+    private var mGuestDataBaseHelper = GuestDataBaseHelper(context)
 
 
     companion object {
@@ -74,9 +77,12 @@ class GuestRepository private constructor(context: Context) {
             contentValues.put(DataBaseConstants.GUEST.COLUMNS.NAME, guest.name)
             contentValues.put(DataBaseConstants.GUEST.COLUMNS.PRESENCE, guest.presence)
 
-            db.insert(DataBaseConstants.GUEST.TABLE_NAME, null, contentValues)
+            val idSave = db.insert(DataBaseConstants.GUEST.TABLE_NAME, null, contentValues)
+            Log.d(TAG, "Convidado salvo com sucesso. Nome: ${guest.name} - ID: $idSave")
             true
         } catch (e: Exception) {
+            Log.e(TAG, "Convidado não foi salvo. Nome: ${guest.name} - Erro: ${e.message}")
+            e.printStackTrace()
             false
         }
 
