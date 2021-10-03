@@ -7,6 +7,8 @@ import androidx.room.RoomDatabase
 //classe utilizada para pegar a instância do banco
 abstract class GuestDataBase : RoomDatabase() {
 
+    abstract fun guestDAO(): GuestDAO
+
     companion object {
 
         private lateinit var INSTANCE: GuestDataBase
