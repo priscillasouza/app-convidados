@@ -30,7 +30,6 @@ class GuestRepository(context: Context) {
 
     fun update(guest: GuestModel): Boolean {
         return mDataBase.update(guest) > 0
-
     }
 
     fun delete(guest: GuestModel) {
